@@ -1,0 +1,45 @@
+package tests;
+
+import config.ConfigProvider;
+import core.SelenideDriver;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import pages.LoginPage;
+import pages.ProfilePage;
+
+@Epic(value = "Профиль")
+@DisplayName("Тесты для Профиля пользователя")
+public class CheckProfileTest extends SelenideDriver {
+    private LoginPage loginPage = new LoginPage();
+    private ProfilePage profilePage = new ProfilePage();
+
+    @Test
+    @Feature(value = "Отображение элементов")
+    @Story("Видимость имени на странице")
+    @DisplayName("Имя пользователя на странице Профиль")
+    @Description("Тест проверяет, что отображается имя пользователя при открытии страницы Профиль")
+    @Owner("Anton Moskovsky")
+    @Link("https://t.me/moskkovsky")
+    @Severity(value = SeverityLevel.NORMAL)
+    public void testCheckVisibleNameOnProfile() {
+        loginPage.auth()
+                .getNavigation()
+                .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
+        profilePage.checkNameInProfile(ConfigProvider.USER_NAME);
+    }
+
+    @Test
+    @Feature(value = "Отображение элементов")
+    @Story("Видимость подсказок в блоке О себе")
+    @DisplayName("Подсказка Рассказать о себе в блоке О себе")
+    @Description("Тест проверяет все подсказки в поле ввода текста в блоке О себе")
+    @Owner("Anton Moskovsky")
+    @Severity(value = SeverityLevel.TRIVIAL)
+    public void testCheckVisibleHintInFieldTellAboutMeOnProfile() {
+        loginPage.auth()
+                .getNavigation()
+                .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
+        profilePage.checkHintInFieldTellAboutMeInProfile();
+    }
+}
