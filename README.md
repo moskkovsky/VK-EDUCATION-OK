@@ -49,7 +49,8 @@
 
 
 Отчеты публикуются в ветке **gh-pages** и в **Deployments**
-<img width="449" alt="thirdHomeWork5_result" src="https://github.com/user-attachments/assets/4fd17aee-2a77-4e34-b4fe-714dfd4bf2f7" />
+<img width="1904" alt="image" src="https://github.com/user-attachments/assets/001b5ebc-6a48-4df2-b262-f3044d0998bc" />
+
 
 ## Результат:
 <img width="950" alt="thirdHomework_result" src="https://github.com/user-attachments/assets/477469d8-0764-44f0-90fe-22d7ad3eb2e7" />
