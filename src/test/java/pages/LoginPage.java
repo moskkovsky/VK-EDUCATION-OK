@@ -18,7 +18,7 @@ public class LoginPage {
     private static final Logger log = LogManager.getLogger(LoginPage.class);
     private final SelenideElement fieldInputEmail = $x("//input[@id='field_email']");
     private final SelenideElement fieldInputPassword = $(byId("field_password"));
-    private final SelenideElement buttonSignInOK = $x("//input[@value='Log in to OK']");
+    private final SelenideElement buttonSignInOK = $x("//input[@value='Войти в Одноклассники']");
     private static final String ERROR_MESSAGE_TEMPLATE = "//div[text()='%s']"; // Шаблон для ошибок на страницы Авторизации
 
     @Step("Проходим авторизацию с почтой пользователя")
