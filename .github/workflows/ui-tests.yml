@@ -28,13 +28,15 @@ jobs:
           LOGIN: ${{ secrets.USER_LOGIN }}
           PASSWORD: ${{ secrets.USER_PASSWORD }}
 
-      - name: Allure Report
-        run: |
-            mvn test -Dtest=CheckSettingsTest
-            mvn allure:report
-      - name: Upload Allure report as artifact
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: target/allure-results
+
+      - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
           name: allure-report
-          path: target/allure-results
+          path: target/site/allure-maven-plugin
 
