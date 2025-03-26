@@ -1,0 +1,31 @@
+name: 🔮UI Одноклассники
+
+on:
+  push:
+    branches: homework
+  pull_request:
+    branches: homework
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run UI tests with Maven
+        run: mvn test -Dtest=CheckSettingsTest
+        env:
+          BROWSER: chrome
+          LOGIN: ${{ secrets.USER_LOGIN }}
+          PASSWORD: ${{ secrets.USER_PASSWORD }}
+
