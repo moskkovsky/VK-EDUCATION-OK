@@ -23,6 +23,7 @@ abstract public class SelenideDriver {
                 "--disable-dev-shm-usage",
                 "--remote-allow-origins=*",
                 "--user-data-dir=/tmp/chrome_profile_" + System.currentTimeMillis(),
+                "--accept-language=ru-RU",
                 "--lang=ru"
         );
 
