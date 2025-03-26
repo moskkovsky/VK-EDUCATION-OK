@@ -28,3 +28,13 @@ jobs:
           LOGIN: ${{ secrets.USER_LOGIN }}
           PASSWORD: ${{ secrets.USER_PASSWORD }}
 
+      - name: Allure Report
+        run: |
+            mvn test -Dtest=CheckSettingsTest
+            mvn allure:report
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/allure-results
+
