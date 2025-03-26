@@ -16,7 +16,7 @@
         <selenide.version>7.0.4</selenide.version>
         <typesage.config.version>1.4.1</typesage.config.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
-        <allure.version>2.13.1</allure.version>
+        <allure.version>2.24.0</allure.version>
         <httpclient5.version>5.2.1</httpclient5.version>
         <webdrivermanager.version>5.6.3</webdrivermanager.version>
         <lombok.version>1.18.22</lombok.version>
