@@ -1,10 +1,10 @@
 name: 🔮UI Одноклассники
+
 on:
   push:
     branches: homework
   pull_request:
     branches: homework
-  #workflow_dispatch: верну, когда залью в ветку main
 
 jobs:
   test:
@@ -28,26 +28,29 @@ jobs:
           LOGIN: ${{ secrets.USER_LOGIN }}
           PASSWORD: ${{ secrets.USER_PASSWORD }}
 
-      - name: Copy History
-        uses: actions/checkout@v2
+      - name: Verify Allure results
+        run: |
+          echo "Allure results content:"
+          ls -la target/allure-results
+
+      - name: Checkout gh-pages for history
+        uses: actions/checkout@v3
         if: always()
         with:
           ref: gh-pages
           path: gh-pages
-      - name: Build Report
+
+      - name: Build Allure Report
         uses: simple-elf/allure-report-action@v1.10
         if: always()
         with:
           allure_results: target/allure-results
-          allure_history: allure-history
+          allure_history: gh-pages/allure-history
           keep_reports: 20
+
       - name: Publish Report
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
-
-
-
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages
