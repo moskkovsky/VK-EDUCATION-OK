@@ -69,7 +69,7 @@ public class CheckTapeTest extends SelenideDriver {
     @Test
     @Feature("Взаимодействие с элементами")
     @Story("Переключение между кнопками")
-    @DisplayName("Кнопка Моменты после нажатия активна и кнопка 'Увлечения' неактивна")
+    @DisplayName("Кнопка Моменты после нажатия активна и кнопка Увлечения неактивна")
     @Description("Тест проверяет, что после нажатия на кнопку Моменты атрибут aria-selected:true, у кнопки Увлечения атрибут атрибут aria-selected:false")
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)

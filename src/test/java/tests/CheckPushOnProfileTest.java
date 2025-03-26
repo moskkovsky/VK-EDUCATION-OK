@@ -31,7 +31,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
 
     @Test
     @Feature("Кликабельность элементов")
-    @Story("Видимость кнопки Опубликовать")
+    @Story("Кликабельность кнопки Опубликовать")
     @DisplayName("Кликабельность кнопки Опубликовать")
     @Description("Проверка кнопки Опубликовать кликабельна")
     @Owner("Anton Moskovsky")
