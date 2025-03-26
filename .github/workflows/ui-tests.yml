@@ -1,13 +1,8 @@
 name: 🔮UI Одноклассники
-
 on:
   push:
-    branches: homework
   pull_request:
-    branches: homework
   workflow_dispatch:
-
-
 
 jobs:
   test:
