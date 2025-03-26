@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Wed Mar 26 12:11:45 GMT 2025","Wed Mar 26 12:12:14 GMT 2025","29666","","Тесты для Настройки пользователя","","tests.CheckSettingsTest","testCheckVisibleNameOnProfile","Открытие страницы Настройки через Профиль","Проверка корректности перехода на страницу настроек из профиля пользователя"
