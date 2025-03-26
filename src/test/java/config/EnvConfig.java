@@ -5,6 +5,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class EnvConfig {
     private static final String FILE = "configUserData.env";
     private static final Dotenv dotenv = Dotenv.configure()
+            .ignoreIfMissing()
             .filename(FILE)
             .load();
 

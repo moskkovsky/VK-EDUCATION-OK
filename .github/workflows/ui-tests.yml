@@ -1,8 +1,10 @@
 name: 🔮UI Одноклассники
 on:
   push:
+    branches: homework
   pull_request:
-  workflow_dispatch:
+    branches: homework
+  #workflow_dispatch: верну, когда залью в ветку main
 
 jobs:
   test:
