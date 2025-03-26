@@ -28,14 +28,24 @@ jobs:
           LOGIN: ${{ secrets.USER_LOGIN }}
           PASSWORD: ${{ secrets.USER_PASSWORD }}
 
-      - name: Generate Allure Report
+      - name: Copy History
+        uses: actions/checkout@v2
         if: always()
-        run: |
-          mvn allure:report -Dallure.download.url=https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.zip
-
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: target/site/allure-maven-plugin
+          ref: gh-pages
+          path: gh-pages
+      - name: Build Report
+        uses: simple-elf/allure-report-action@v1.10
+        if: always()
+        with:
+          allure_results: build/allure-results
+          allure_history: allure-history
+          keep_reports: 20
+      - name: Publish Report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
 
