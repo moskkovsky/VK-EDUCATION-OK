@@ -28,13 +28,12 @@ jobs:
           LOGIN: ${{ secrets.USER_LOGIN }}
           PASSWORD: ${{ secrets.USER_PASSWORD }}
 
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-results
-          path: target/allure-results
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          mvn allure:report
 
-      - name: Upload Allure report
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v3
         with:
           name: allure-report
