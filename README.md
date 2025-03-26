@@ -40,13 +40,17 @@
         * **@Owner**
         * **@Severity**
 
-![thirdHomeWork_2_result.png](..%2F..%2FDownloads%2FVK%20EDUCATION%2FresultScreenshoot%2FthirdHomeWork_2_result.png)
+<img width="960" alt="thirdHomeWork_2_result" src="https://github.com/user-attachments/assets/c1af64ff-f39e-4a74-8162-ad18db2200c4" />
+
 ## CI/CD:
 В вкладке Actions тесты запускаются на машине ubuntu с помощью Github Workflow
-![thirdHomeWork3_result.png](..%2F..%2FDownloads%2FVK%20EDUCATION%2FresultScreenshoot%2FthirdHomeWork3_result.png)
-![thirdHomeWork4_result.png](..%2F..%2FDownloads%2FVK%20EDUCATION%2FresultScreenshoot%2FthirdHomeWork4_result.png)
+<img width="760" alt="thirdHomeWork4_result" src="https://github.com/user-attachments/assets/d7b74ddd-0b95-473e-a615-2803324f635d" />
+<img width="820" alt="thirdHomeWork3_result" src="https://github.com/user-attachments/assets/2b8c76ff-f471-417b-bd6e-28d5c92d8d11" />
+
 Отчеты публикуются в ветке **gh-pages** и в **Deployments**
-![thirdHomeWork5_result.png](..%2F..%2FDownloads%2FVK%20EDUCATION%2FresultScreenshoot%2FthirdHomeWork5_result.png)
+<img width="449" alt="thirdHomeWork5_result" src="https://github.com/user-attachments/assets/4fd17aee-2a77-4e34-b4fe-714dfd4bf2f7" />
+
 ## Результат:
-![thirdHomework_result.png](..%2F..%2FDownloads%2FVK%20EDUCATION%2FresultScreenshoot%2FthirdHomework_result.png)
+<img width="950" alt="thirdHomework_result" src="https://github.com/user-attachments/assets/477469d8-0764-44f0-90fe-22d7ad3eb2e7" />
+
 
