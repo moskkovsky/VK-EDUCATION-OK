@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.Arrays;
-
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static config.ConfigSelenideProvider.*;
 
@@ -28,8 +26,6 @@ abstract public class SelenideDriver {
                 "--accept-language=ru-RU",
                 "--lang=ru"
         );
-
-        Configuration.browserCapabilities.setCapability("chrome.switches", Arrays.asList("--lang=ru"));
 
         if (HEADLESS) {
             options.addArguments("--headless=new");
