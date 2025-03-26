@@ -22,7 +22,8 @@ abstract public class SelenideDriver {
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
                 "--remote-allow-origins=*",
-                "--user-data-dir=/tmp/chrome_profile_" + System.currentTimeMillis()
+                "--user-data-dir=/tmp/chrome_profile_" + System.currentTimeMillis(),
+                "--lang=ru"
         );
 
         if (HEADLESS) {
