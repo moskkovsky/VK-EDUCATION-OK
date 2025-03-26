@@ -29,7 +29,7 @@ jobs:
           cache: 'maven'
 
       - name: Run UI tests with Maven
-        run: mvn test -Dtest=CheckSettingsTest -Dallure.results.directory=target/allure-results
+        run: mvn test -Dtest=CheckTapeTest -Dallure.results.directory=target/allure-results
         env:
           BROWSER: chrome
           LOGIN: ${{ secrets.USER_LOGIN }}
