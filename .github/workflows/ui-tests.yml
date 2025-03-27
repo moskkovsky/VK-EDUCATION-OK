@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      LANG: ru_RU.UTF-8
+      LANGUAGE: ru_RU.UTF-8
+      LC_ALL: ru_RU.UTF-8
     steps:
       - name: Set up locale
         run: |
