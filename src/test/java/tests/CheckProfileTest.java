@@ -1,6 +1,7 @@
 package tests;
 
 import config.ConfigProvider;
+import config.EnvConfig;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +24,10 @@ public class CheckProfileTest extends SelenideDriver {
     @Link("https://t.me/moskkovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.auth()
+        loginPage.auth(
+                        EnvConfig.USER_LOGIN,
+                        EnvConfig.USER_PASSWORD
+                 )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
         profilePage.checkNameInProfile(ConfigProvider.USER_NAME);
@@ -37,7 +41,10 @@ public class CheckProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInFieldTellAboutMeOnProfile() {
-        loginPage.auth()
+        loginPage.auth(
+                        EnvConfig.USER_LOGIN,
+                        EnvConfig.USER_PASSWORD
+                )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
         profilePage.checkHintInFieldTellAboutMeInProfile();

@@ -1,6 +1,9 @@
 package tests;
 
 
+import config.ConfigProvider;
+import config.EnvConfig;
+import constants.login.LoginErrorMessageValues;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +11,8 @@ import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.TapePage;
 
-import static constants.tape.TapeValues.BUTTON_HOBBIES;
+import static constants.tape.TapeValues.BUTTON_MY_TAPE;
+
 
 @Epic(value = "Авторизация")
 @DisplayName("Тесты для Авторизации пользователя")
@@ -25,14 +29,13 @@ public class CheckLoginTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.BLOCKER)
     public void testCheckSuccessAuth() {
-        loginPage.auth();
-        tapePage.checkButtonVisibleOnTapePage(BUTTON_HOBBIES);
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
+        tapePage.checkButtonBurgerMenuOnTapePage();
     }
 
-    /**
-     * Верну тесты, когда скинут тестового пользователя
-     */
-    /*
     @Test
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом логине")
@@ -41,7 +44,7 @@ public class CheckLoginTest extends SelenideDriver {
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleErrorMessageWithEmptyLogin() {
         loginPage.inputUserEmail("")
-                .inputUserPassword(System.getenv("USER_PASSWORD"))
+                .inputUserPassword(EnvConfig.USER_PASSWORD)
                 .clickButtonSignOk()
                 .checkErrorMessage(LoginErrorMessageValues.ERROR_MESSAGE_EMPTY_LOGIN);
     }
@@ -53,7 +56,7 @@ public class CheckLoginTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleErrorMessageWithEmptyPassword() {
-        loginPage.inputUserEmail()
+        loginPage.inputUserEmail(EnvConfig.USER_LOGIN)
                 .inputUserPassword("")
                 .clickButtonSignOk()
                 .checkErrorMessage(LoginErrorMessageValues.ERROR_MESSAGE_EMPTY_PASSWORD);
@@ -84,5 +87,5 @@ public class CheckLoginTest extends SelenideDriver {
                 .clickButtonSignOk()
                 .checkErrorMessage(LoginErrorMessageValues.ERROR_MESSAGE_WRONG_LOGIN_OR_PASSWORD);
     }
-     */
+
 }

@@ -1,5 +1,6 @@
 package tests;
 
+import config.EnvConfig;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +26,10 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleButtonPushOnProfile() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         pushOnProfilePage.checkVisibleButtonPush();
     }
 
@@ -37,7 +41,10 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckClickButtonPushOnProfile() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         pushOnProfilePage.clickButtonPush();
     }
 
@@ -49,7 +56,10 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInInputTextInFieldForPushOnProfile() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         pushOnProfilePage.clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .checkVisibleHintInInputField();
@@ -63,7 +73,10 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckNotActivePushEmptyText() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         pushOnProfilePage.clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .checkButtonPushOnProfileDisabled();
@@ -77,7 +90,10 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCreateNoteOnProfile() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         pushOnProfilePage.clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .inputTextInField(TEXT_FOR_INPUT_IN_FIELD)

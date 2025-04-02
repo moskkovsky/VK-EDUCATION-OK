@@ -1,6 +1,7 @@
 package tests;
 
 import config.ConfigProvider;
+import config.EnvConfig;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +25,10 @@ public class CheckSettingsTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.auth()
+        loginPage.auth(
+                        EnvConfig.USER_LOGIN,
+                        EnvConfig.USER_PASSWORD
+                )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
         profilePage.clickToButtonSettingsOnProfile()

@@ -1,14 +1,15 @@
 package tests;
 
+import config.EnvConfig;
 import core.SelenideDriver;
 import io.qameta.allure.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.TapePage;
 
-import static constants.tape.TapeValues.BUTTON_HOBBIES;
-import static constants.tape.TapeValues.BUTTON_MOMENTS;
+import static constants.tape.TapeValues.BUTTON_MY_TAPE;
 
 
 @Epic(value = "Лента")
@@ -18,6 +19,7 @@ public class CheckTapeTest extends SelenideDriver {
     private LoginPage loginPage = new LoginPage();
     private TapePage tapePage = new TapePage();
 
+    @Disabled
     @Test
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
@@ -26,10 +28,14 @@ public class CheckTapeTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckButtonHobbiesVisibleOnPage() {
-        loginPage.auth();
-        tapePage.checkButtonVisibleOnTapePage(BUTTON_HOBBIES);
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
+        tapePage.checkButtonVisibleOnTapePage(BUTTON_MY_TAPE);
     }
 
+    @Disabled
     @Test
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
@@ -38,10 +44,14 @@ public class CheckTapeTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckButtonMomentsVisibleOnPage() {
-        loginPage.auth();
-        tapePage.checkButtonVisibleOnTapePage(BUTTON_MOMENTS);
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
+        tapePage.checkButtonVisibleOnTapePage(BUTTON_MY_TAPE);
     }
 
+    @Disabled
     @Test
     @Feature("Состояние элементов")
     @Story("Проверка активного состояния")
@@ -50,10 +60,14 @@ public class CheckTapeTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckActiveButtonOnTape() {
-        loginPage.auth();
-        tapePage.checkButtonIsSelectOnTapePage(BUTTON_HOBBIES);
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
+        tapePage.checkButtonIsSelectOnTapePage(BUTTON_MY_TAPE);
     }
 
+    @Disabled
     @Test
     @Feature("Состояние элементов")
     @Story("Проверка неактивного состояния")
@@ -62,10 +76,14 @@ public class CheckTapeTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckNotActiveButtonOnTape() {
-        loginPage.auth();
-        tapePage.checkButtonIsNotSelectOnTapePage(BUTTON_MOMENTS);
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
+        tapePage.checkButtonIsNotSelectOnTapePage(BUTTON_MY_TAPE);
     }
 
+    @Disabled
     @Test
     @Feature("Взаимодействие с элементами")
     @Story("Переключение между кнопками")
@@ -74,9 +92,12 @@ public class CheckTapeTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckActiveButtonMomentsAndButtonHobbiesNotActiveOnTape() {
-        loginPage.auth();
+        loginPage.auth(
+                EnvConfig.USER_LOGIN,
+                EnvConfig.USER_PASSWORD
+        );
         tapePage.checkActiveButtonAfterClickOnTapePage(
-                BUTTON_MOMENTS, BUTTON_HOBBIES
+                BUTTON_MY_TAPE, BUTTON_MY_TAPE
         );
     }
 }

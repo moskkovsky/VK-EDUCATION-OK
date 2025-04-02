@@ -8,11 +8,24 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.DisplayName;
 
 import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 public class TapePage {
     private static final Logger log = LogManager.getLogger(TapePage.class);
     private static String BUTTON_ON_TAPE = "//button[text()='%s']";
+    private final SelenideElement buttonMenuBurgerMenuMyTape = $x("//a[span='Моя лента']");
 
+    @Step("Проверяем, что кнопка выпадающего списка 'Моя лента' отображается на странице")
+    @DisplayName("Проверка бургера на Моя лента на странице Лента")
+    public TapePage checkButtonBurgerMenuOnTapePage() {
+        log.info("Проверяем, кнопка бургер отображается на странице");
+        buttonMenuBurgerMenuMyTape.shouldBe(visible);
+        return this;
+    }
+
+    /**
+     * На пользаке с прода
+     */
     @Step("Проверяем, что кнопка '{valueButtonOnTape}' выбрана")
     @DisplayName("Проверка активности кнопки valueButtonOnTape")
     public TapePage checkButtonIsSelectOnTapePage(String valueButtonOnTape) {
@@ -22,6 +35,9 @@ public class TapePage {
         return this;
     }
 
+    /**
+     * На пользаке с прода
+     */
     @Step("Проверяем, что кнопка '{valueButtonOnTape}' не выбрана")
     @DisplayName("Проверяем неактивную кнопку")
     public TapePage checkButtonIsNotSelectOnTapePage(String valueButtonOnTape) {
@@ -31,6 +47,9 @@ public class TapePage {
         return this;
     }
 
+    /**
+     * На пользаке с прода
+     */
     @Step("Проверяем, что кнопка '{valueButtonOnTape}' отображается на странице")
     @DisplayName("Проверяем видимость кнопки на странице")
     public TapePage checkButtonVisibleOnTapePage(String valueButtonOnTape) {
@@ -39,6 +58,9 @@ public class TapePage {
         return this;
     }
 
+    /**
+     * На пользаке с прода
+     */
     @Step("Проверяем, что кнопка '{valueActiveButtonOnTape}' активна после нажатия и кнопка {valueNotActiveButtonOnTape} неактивна")
     @DisplayName("Проверяем атрибуты кнопок после действий на странице")
     public TapePage checkActiveButtonAfterClickOnTapePage(String valueActiveButtonOnTape, String valueNotActiveButtonOnTape) {

@@ -16,16 +16,16 @@ import static com.codeborne.selenide.Selenide.$x;
  */
 public class LoginPage {
     private static final Logger log = LogManager.getLogger(LoginPage.class);
-    private final SelenideElement fieldInputEmail = $x("//input[@id='field_email']");
+    private final SelenideElement fieldInputEmail = $(byId("field_email"));
     private final SelenideElement fieldInputPassword = $(byId("field_password"));
     private final SelenideElement buttonSignInOK = $x("//input[@value='Войти в Одноклассники']");
     private static final String ERROR_MESSAGE_TEMPLATE = "//div[text()='%s']"; // Шаблон для ошибок на страницы Авторизации
 
     @Step("Проходим авторизацию с почтой пользователя")
-    public LoginPage auth() {
+    public LoginPage auth(String userEmail, String userPassword) {
         log.info("Авторизация с логином и паролем");
-        inputUserEmail();
-        inputUserPassword();
+        inputUserEmail(userEmail);
+        inputUserPassword(userPassword);
         clickButtonSignOk();
         return this;
     }
@@ -41,18 +41,18 @@ public class LoginPage {
     }
 
     @Step("Вводим логин пользователя")
-    public LoginPage inputUserEmail() {
-        log.info("Вводим логин пользователя");
+    public LoginPage inputUserEmail(String userEmail) {
+        log.info(String.format("Вводим логин пользователя: %s", userEmail));
         fieldInputEmail.shouldBe(Condition.visible).clear();
-        fieldInputEmail.sendKeys(EnvConfig.USER_LOGIN);
+        fieldInputEmail.sendKeys(userEmail);
         return this;
     }
 
     @Step("Вводим пароль пользователя")
-    public LoginPage inputUserPassword() {
-        log.info("Вводим пароль пользователя");
+    public LoginPage inputUserPassword(String userPassword) {
+        log.info(String.format("Вводим пароль пользователя: %s", userPassword));
         fieldInputPassword.shouldBe(Condition.visible).clear();
-        fieldInputPassword.sendKeys(EnvConfig.USER_PASSWORD);
+        fieldInputPassword.sendKeys(userPassword);
         return this;
     }
 
