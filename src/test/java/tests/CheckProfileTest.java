@@ -11,6 +11,7 @@ import pages.ProfilePage;
 import tag.ProfileTag;
 
 @Epic(value = "Профиль")
+@Link("https://t.me/moskkovsky")
 @DisplayName("Тесты для Профиля пользователя")
 public class CheckProfileTest extends SelenideDriver {
     private LoginPage loginPage = new LoginPage();
