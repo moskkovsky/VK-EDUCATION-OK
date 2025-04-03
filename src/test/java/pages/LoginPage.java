@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import config.EnvConfig;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,7 +62,7 @@ public class LoginPage {
         return this;
     }
 
-    public Navigation getNavigation() {
-        return new Navigation();
+    public NavigationPage getNavigation() {
+        return new NavigationPage();
     }
 }
