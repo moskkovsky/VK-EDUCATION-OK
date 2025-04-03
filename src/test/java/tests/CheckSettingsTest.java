@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.ProfilePage;
+import tag.SettingsTag;
 
 @Epic(value = "Настройки")
 @DisplayName("Тесты для Настройки пользователя")
@@ -18,6 +19,7 @@ public class CheckSettingsTest extends SelenideDriver {
     private ProfilePage profilePage = new ProfilePage();
 
     @Test
+    @SettingsTag
     @Feature(value = "Отображение элементов")
     @Story("Открытие страницы настроек")
     @DisplayName("Открытие страницы Настройки через Профиль")

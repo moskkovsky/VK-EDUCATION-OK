@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.ProfilePage;
+import tag.ProfileTag;
 
 @Epic(value = "Профиль")
 @DisplayName("Тесты для Профиля пользователя")
@@ -16,6 +17,7 @@ public class CheckProfileTest extends SelenideDriver {
     private ProfilePage profilePage = new ProfilePage();
 
     @Test
+    @ProfileTag
     @Feature(value = "Отображение элементов")
     @Story("Видимость имени на странице")
     @DisplayName("Имя пользователя на странице Профиль")
@@ -34,6 +36,7 @@ public class CheckProfileTest extends SelenideDriver {
     }
 
     @Test
+    @ProfileTag
     @Feature(value = "Отображение элементов")
     @Story("Видимость подсказок в блоке О себе")
     @DisplayName("Подсказка Рассказать о себе в блоке О себе")

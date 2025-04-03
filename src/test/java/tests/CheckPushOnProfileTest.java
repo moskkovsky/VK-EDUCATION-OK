@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.PushOnProfilePage;
+import tag.PushOnProfileTag;
 
 import static constants.pushOnProfilePage.PushOnProfileValues.NOTE_IN_LIST_MENU;
 import static constants.pushOnProfilePage.PushOnProfileValues.TEXT_FOR_INPUT_IN_FIELD;
@@ -19,6 +20,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     private PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
 
     @Test
+    @PushOnProfileTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопки Опубликовать")
     @DisplayName("Проверка отображения кнопки Опубликовать")
@@ -34,6 +36,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     }
 
     @Test
+    @PushOnProfileTag
     @Feature("Кликабельность элементов")
     @Story("Кликабельность кнопки Опубликовать")
     @DisplayName("Кликабельность кнопки Опубликовать")
@@ -49,6 +52,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     }
 
     @Test
+    @PushOnProfileTag
     @Feature("Отображение элементов")
     @Story("Видимость подсказок в поле ввода Записи")
     @DisplayName("Проверка подсказок в поле ввода Записи")
@@ -66,6 +70,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     }
 
     @Test
+    @PushOnProfileTag
     @Feature("Не кликабельна кнопка")
     @Story("Не кликабельность кнопки без вставки текста в поле ввода")
     @DisplayName("Неактивная кнопка Публиковать без текста")
@@ -83,6 +88,7 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     }
 
     @Test
+    @PushOnProfileTag
     @Feature("Публикация записи")
     @Story("Публикация записи на странице пользователя")
     @DisplayName("Публикация записи на странице")

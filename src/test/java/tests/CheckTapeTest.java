@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.TapePage;
+import tag.TapeTag;
 
 import static constants.tape.TapeValues.BUTTON_MY_TAPE;
 
@@ -21,6 +22,7 @@ public class CheckTapeTest extends SelenideDriver {
 
     @Disabled
     @Test
+    @TapeTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
     @DisplayName("Отображение кнопки Увлечения при открытии страницы Лента")
@@ -37,6 +39,7 @@ public class CheckTapeTest extends SelenideDriver {
 
     @Disabled
     @Test
+    @TapeTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
     @DisplayName("Отображение кнопки Моменты при открытии страницы Лента")
@@ -53,6 +56,7 @@ public class CheckTapeTest extends SelenideDriver {
 
     @Disabled
     @Test
+    @TapeTag
     @Feature("Состояние элементов")
     @Story("Проверка активного состояния")
     @DisplayName("Выбор кнопки Увлечения при открытии страницы Лента")
@@ -69,6 +73,7 @@ public class CheckTapeTest extends SelenideDriver {
 
     @Disabled
     @Test
+    @TapeTag
     @Feature("Состояние элементов")
     @Story("Проверка неактивного состояния")
     @DisplayName("Неактивна кнопка Моменты при открытии страницы Лента")
@@ -85,6 +90,7 @@ public class CheckTapeTest extends SelenideDriver {
 
     @Disabled
     @Test
+    @TapeTag
     @Feature("Взаимодействие с элементами")
     @Story("Переключение между кнопками")
     @DisplayName("Кнопка Моменты после нажатия активна и кнопка Увлечения неактивна")

@@ -1,4 +1,4 @@
-name: 🔮UI Одноклассники
+name: 👻 UI Одноклассники
 on:
   push:
     branches: homework-4
@@ -14,16 +14,6 @@ jobs:
       LANGUAGE: ru_RU.UTF-8
       LC_ALL: ru_RU.UTF-8
     steps:
-      - name: Set up locale
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y locales
-          sudo locale-gen ru_RU.UTF-8
-          echo "LANG=ru_RU.UTF-8" | sudo tee /etc/default/locale
-          echo "LC_ALL=ru_RU.UTF-8" | sudo tee -a /etc/default/locale
-          source /etc/default/locale
-          echo "Локаль установлена: $(locale)"
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -35,7 +25,7 @@ jobs:
           cache: 'maven'
 
       - name: Run UI tests with Maven
-        run: mvn test -Dtest=CheckTapeTest -Dallure.results.directory=target/allure-results
+        run: mvn test -Dgroups=login -Dallure.results.directory=target/allure-results
         env:
           BROWSER: chrome
           LOGIN: ${{ secrets.USER_LOGIN }}

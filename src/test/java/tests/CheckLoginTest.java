@@ -7,11 +7,14 @@ import constants.login.LoginErrorMessageValues;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pages.LoginPage;
 import pages.TapePage;
+import tag.LoginTag;
 
-import static constants.tape.TapeValues.BUTTON_MY_TAPE;
+import java.util.concurrent.TimeUnit;
 
 
 @Epic(value = "Авторизация")
@@ -22,6 +25,8 @@ public class CheckLoginTest extends SelenideDriver {
     private TapePage tapePage = new TapePage();
 
     @Test
+    @Tag("login")
+    @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Вход по логину и паролю")
     @Story(value = "Успешная авторизация с валидными данными")
     @DisplayName("Прохождение авторизации")
@@ -37,6 +42,8 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
+    @Tag("login")
+    @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом логине")
     @Description("Тест проверяет на получение ошибки, в случае если вводим пустой логин")
@@ -50,6 +57,8 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
+    @Tag("login")
+    @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом пароле")
     @Description("Тест проверяет на получение ошибки, в случае если вводим пустой пароль")
@@ -63,6 +72,8 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
+    @LoginTag
+    @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом логине и пароле")
     @Description("Тест проверяет на получение ошибки, в случае если вводим пустой логин и пароль")
@@ -76,6 +87,7 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
+    @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае ввода неправильных данных")
     @DisplayName("Получение ошибки при неправильном логине и пароле")
     @Description("Тест проверяет на получение ошибки, в случае если вводим неправильный логин и пароль")
@@ -87,5 +99,4 @@ public class CheckLoginTest extends SelenideDriver {
                 .clickButtonSignOk()
                 .checkErrorMessage(LoginErrorMessageValues.ERROR_MESSAGE_WRONG_LOGIN_OR_PASSWORD);
     }
-
 }
