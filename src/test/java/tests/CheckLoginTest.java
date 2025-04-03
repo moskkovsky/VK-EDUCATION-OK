@@ -7,7 +7,6 @@ import constants.login.LoginErrorMessageValues;
 import core.SelenideDriver;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import pages.LoginPage;
@@ -18,14 +17,14 @@ import java.util.concurrent.TimeUnit;
 
 
 @Epic(value = "Авторизация")
-@DisplayName("Тесты для Авторизации пользователя")
 @Link("https://t.me/moskkovsky")
+@DisplayName("Тесты для Авторизации пользователя")
 public class CheckLoginTest extends SelenideDriver {
     private LoginPage loginPage = new LoginPage();
     private TapePage tapePage = new TapePage();
 
     @Test
-    @Tag("login")
+    @LoginTag
     @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Вход по логину и паролю")
     @Story(value = "Успешная авторизация с валидными данными")
@@ -42,7 +41,7 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
-    @Tag("login")
+    @LoginTag
     @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом логине")
@@ -57,7 +56,7 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
-    @Tag("login")
+    @LoginTag
     @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае пустого ввода")
     @DisplayName("Получение ошибки при пустом пароле")
@@ -87,6 +86,7 @@ public class CheckLoginTest extends SelenideDriver {
     }
 
     @Test
+    @LoginTag
     @Timeout(value = 120000, unit = TimeUnit.MILLISECONDS)
     @Feature(value = "Получение ошибки в случае ввода неправильных данных")
     @DisplayName("Получение ошибки при неправильном логине и пароле")
