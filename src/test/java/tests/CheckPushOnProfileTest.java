@@ -1,7 +1,7 @@
 package tests;
 
 import config.EnvConfig;
-import core.SelenideDriver;
+import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,15 +9,17 @@ import pages.LoginPage;
 import pages.PushOnProfilePage;
 import tag.PushOnProfileTag;
 
+import java.util.function.Supplier;
+
 import static constants.pushOnProfilePage.PushOnProfileValues.NOTE_IN_LIST_MENU;
 import static constants.pushOnProfilePage.PushOnProfileValues.TEXT_FOR_INPUT_IN_FIELD;
 
 @Epic(value = "Опубликовать")
 @DisplayName("Тесты для Публикации пользователя")
 @Link("https://t.me/moskkovsky")
-public class CheckPushOnProfileTest extends SelenideDriver {
-    private LoginPage loginPage = new LoginPage();
-    private PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+public class CheckPushOnProfileTest extends BaseTest {
+    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
+    private Supplier<PushOnProfilePage> pushOnProfilePage = () -> new PushOnProfilePage().get();
 
     @Test
     @PushOnProfileTag
@@ -28,11 +30,11 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleButtonPushOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                 EnvConfig.USER_LOGIN,
                 EnvConfig.USER_PASSWORD
         );
-        pushOnProfilePage.checkVisibleButtonPush();
+        pushOnProfilePage.get();
     }
 
     @Test
@@ -44,11 +46,11 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckClickButtonPushOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                 EnvConfig.USER_LOGIN,
                 EnvConfig.USER_PASSWORD
         );
-        pushOnProfilePage.clickButtonPush();
+        pushOnProfilePage.get().clickButtonPush();
     }
 
     @Test
@@ -60,11 +62,11 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInInputTextInFieldForPushOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                 EnvConfig.USER_LOGIN,
                 EnvConfig.USER_PASSWORD
         );
-        pushOnProfilePage.clickButtonPush()
+        pushOnProfilePage.get().clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .checkVisibleHintInInputField();
     }
@@ -78,11 +80,11 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckNotActivePushEmptyText() {
-        loginPage.auth(
+        loginPage.get().auth(
                 EnvConfig.USER_LOGIN,
                 EnvConfig.USER_PASSWORD
         );
-        pushOnProfilePage.clickButtonPush()
+        pushOnProfilePage.get().clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .checkButtonPushOnProfileDisabled();
     }
@@ -96,11 +98,11 @@ public class CheckPushOnProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCreateNoteOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                 EnvConfig.USER_LOGIN,
                 EnvConfig.USER_PASSWORD
         );
-        pushOnProfilePage.clickButtonPush()
+        pushOnProfilePage.get().clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .inputTextInField(TEXT_FOR_INPUT_IN_FIELD)
                 .clickButtonPushOnProfile();

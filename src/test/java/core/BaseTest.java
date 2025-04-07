@@ -1,7 +1,6 @@
 package core;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.AllureListener;
 import org.junit.jupiter.api.AfterEach;
@@ -13,7 +12,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static config.ConfigSelenideProvider.*;
 
 @ExtendWith(AllureListener.class)
-abstract public class SelenideDriver {
+abstract public class BaseTest {
     @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -31,11 +30,14 @@ abstract public class SelenideDriver {
             options.addArguments("--headless=new");
         }
         Configuration.browser = BROWSER;
+        Configuration.browserCapabilities = options;
         Configuration.headless = HEADLESS;
         Configuration.timeout = TIMEOUT;
         Configuration.pageLoadTimeout = PAGE_LOAD_TIMEOUT;
         Configuration.browserSize = BROWSER_SIZE;
-        Selenide.open(URL);
+        /**
+         * Теперь окно авторизации открывается через LoginPage после внедрения LoadableComponent
+         */
     }
 
     @AfterEach

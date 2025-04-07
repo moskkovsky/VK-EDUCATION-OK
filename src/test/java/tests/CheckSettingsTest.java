@@ -2,7 +2,7 @@ package tests;
 
 import config.ConfigProvider;
 import config.EnvConfig;
-import core.SelenideDriver;
+import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,13 +10,15 @@ import pages.LoginPage;
 import pages.ProfilePage;
 import tag.SettingsTag;
 
+import java.util.function.Supplier;
+
 @Epic(value = "Настройки")
 @DisplayName("Тесты для Настройки пользователя")
 @Link("https://t.me/moskkovsky")
-public class CheckSettingsTest extends SelenideDriver {
+public class CheckSettingsTest extends BaseTest {
 
-    private LoginPage loginPage = new LoginPage();
-    private ProfilePage profilePage = new ProfilePage();
+    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
+    private Supplier<ProfilePage> profilePage = () -> new ProfilePage().get();
 
     @Test
     @SettingsTag
@@ -27,13 +29,13 @@ public class CheckSettingsTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                         EnvConfig.USER_LOGIN,
                         EnvConfig.USER_PASSWORD
                 )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
-        profilePage.clickToButtonSettingsOnProfile()
+        profilePage.get().clickToButtonSettingsOnProfile()
                 .checkVisibleOpenSettings();
     }
 }
