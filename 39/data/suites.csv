@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Tue Apr 15 10:14:40 GMT 2025","Tue Apr 15 10:14:49 GMT 2025","8971","","Тесты для Авторизации пользователя","","tests.CheckLoginTest","testCheckSuccessAuth","Прохождение авторизации","Тест проверяет успешное прохождение авторизации и с проверкой, что после нажатия на кнопку Войти в Одноклассники переход на страницу Лента"
