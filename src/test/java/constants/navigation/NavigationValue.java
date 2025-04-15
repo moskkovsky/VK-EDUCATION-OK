@@ -1,7 +1,7 @@
 package constants.navigation;
 
 public class NavigationValue {
-    static public String[] arrayMenu = {
+    static final public String[] arrayMenu = {
             "technopol69 technopol69",
             "Лента",
             "Увлечения",

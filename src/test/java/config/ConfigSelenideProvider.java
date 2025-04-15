@@ -15,5 +15,4 @@ public interface ConfigSelenideProvider {
     Integer TIMEOUT = readConfig().getInt("timeout");
     Integer PAGE_LOAD_TIMEOUT = readConfig().getInt("pageLoadTimeout");
     String BROWSER_SIZE = readConfig().getString("browserSize");
-    String URL = readConfig().getString("url");
 }

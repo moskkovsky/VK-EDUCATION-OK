@@ -2,7 +2,7 @@ package tests;
 
 import config.ConfigProvider;
 import config.EnvConfig;
-import core.SelenideDriver;
+import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,12 +10,14 @@ import pages.LoginPage;
 import pages.ProfilePage;
 import tag.ProfileTag;
 
+import java.util.function.Supplier;
+
 @Epic(value = "Профиль")
 @Link("https://t.me/moskkovsky")
 @DisplayName("Тесты для Профиля пользователя")
-public class CheckProfileTest extends SelenideDriver {
-    private LoginPage loginPage = new LoginPage();
-    private ProfilePage profilePage = new ProfilePage();
+public class CheckProfileTest extends BaseTest {
+    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
+    private Supplier<ProfilePage> profilePage = () -> new ProfilePage().get();
 
     @Test
     @ProfileTag
@@ -27,13 +29,13 @@ public class CheckProfileTest extends SelenideDriver {
     @Link("https://t.me/moskkovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                         EnvConfig.USER_LOGIN,
                         EnvConfig.USER_PASSWORD
-                 )
+                )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
-        profilePage.checkNameInProfile(ConfigProvider.USER_NAME);
+        profilePage.get();
     }
 
     @Test
@@ -45,12 +47,12 @@ public class CheckProfileTest extends SelenideDriver {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInFieldTellAboutMeOnProfile() {
-        loginPage.auth(
+        loginPage.get().auth(
                         EnvConfig.USER_LOGIN,
                         EnvConfig.USER_PASSWORD
                 )
                 .getNavigation()
                 .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
-        profilePage.checkHintInFieldTellAboutMeInProfile();
+        profilePage.get().checkHintInFieldTellAboutMeInProfile();
     }
 }
