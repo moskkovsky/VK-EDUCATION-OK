@@ -1,25 +1,21 @@
-package tests;
+package tests.ui;
 
 
-import config.EnvConfig;
 import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.NavigationPage;
-import tag.NavigationTag;
-
-import java.util.function.Supplier;
+import tag.pages.NavigationTag;
+import tag.regress.RegressTag;
 
 @Epic("Навигация")
 @Link("https://t.me/moskkovsky")
 @DisplayName("Тесты для элементов Навигации")
 public class CheckNavigationTest extends BaseTest {
-    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
-    private Supplier<NavigationPage> navigationPage = () -> new NavigationPage().get();
-
     @Test
+    @RegressTag
     @NavigationTag
     @Feature(value = "Отображение элементов")
     @Story("Видимость кнопок в меню Навигации")
@@ -28,11 +24,9 @@ public class CheckNavigationTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.CRITICAL)
     public void testCheckVisibleElementsInNavigationMenu() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
+        LoginPage loginPage = new LoginPage().get();
+        NavigationPage navigationPage = new NavigationPage();
+        loginPage.auth();
         navigationPage.get().checkVisibleElementsInNavigationMenu();
     }
-
 }

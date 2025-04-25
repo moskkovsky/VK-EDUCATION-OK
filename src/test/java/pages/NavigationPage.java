@@ -17,12 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NavigationPage extends LoadableComponent<NavigationPage> {
     private static final Logger log = LogManager.getLogger(NavigationPage.class);
-    private final By navigationMenu = By.id("hook_Block_Navigation");
+    private static final By MENU_NAVIGATION = By.id("hook_Block_Navigation");
 
     @Override
     protected void load() {
         refresh();
     }
+
 
     @Override
     protected void isLoaded() throws Error {
@@ -38,7 +39,7 @@ public class NavigationPage extends LoadableComponent<NavigationPage> {
     }
 
     @Step("Проверяем, что кнопки навигации отображаются на странице")
-    public void checkVisibleElementsInNavigationMenu() {
+    public NavigationPage checkVisibleElementsInNavigationMenu() {
         log.info("Проверяем, что все кнопки на меню навигации присутствуют");
         assertAll("Все кнопки из навигации присутствуют",
                 () -> assertEquals($(getSelenideElementInNavigationMenu(arrayMenu[0])).getText().trim(), arrayMenu[0]),
@@ -53,10 +54,11 @@ public class NavigationPage extends LoadableComponent<NavigationPage> {
                 () -> assertEquals($(getSelenideElementInNavigationMenu(arrayMenu[9])).getText().trim(), arrayMenu[9]),
                 () -> assertEquals($(getSelenideElementInNavigationMenu(arrayMenu[10])).getText().trim(), arrayMenu[10])
         );
+        return this;
     }
 
     private SelenideElement getSelenideElementInNavigationMenu(String elementInMenuNavigation) {
-        return $(navigationMenu)
+        return $(MENU_NAVIGATION)
                 .find(By.xpath(String.format(".//*[text()='%s']", elementInMenuNavigation)))
                 .shouldBe(visible.because("Не найден элемент навигации: " + elementInMenuNavigation));
     }
