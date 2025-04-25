@@ -1,29 +1,24 @@
-package tests;
+package tests.ui;
 
-import config.EnvConfig;
+
 import core.BaseTest;
 import io.qameta.allure.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import pages.TapePage;
-import tag.TapeTag;
+import tag.pages.TapeTag;
+import tag.regress.RegressTag;
 
-import java.util.function.Supplier;
-
-import static constants.tape.TapeValues.BUTTON_MY_TAPE;
-
+import static constants.tape.TapeValues.TITLE_BUTTON_HOBBIES;
+import static constants.tape.TapeValues.TITLE_BUTTON_MOMENTS;
 
 @Epic(value = "Лента")
 @DisplayName("Тесты для Ленты пользователя")
 @Link("https://t.me/moskkovsky")
 public class CheckTapeTest extends BaseTest {
-    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
-    private Supplier<TapePage> tapePage = () -> new TapePage().get();
-
-    @Disabled
     @Test
+    @RegressTag
     @TapeTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
@@ -32,15 +27,14 @@ public class CheckTapeTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckButtonHobbiesVisibleOnPage() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        tapePage.get().checkButtonVisibleOnTapePage(BUTTON_MY_TAPE);
+        LoginPage loginPage = new LoginPage().get();
+        TapePage tapePage = new TapePage();
+        loginPage.auth();
+        tapePage.get().checkButtonVisibleOnTapePage(TITLE_BUTTON_HOBBIES);
     }
 
-    @Disabled
     @Test
+    @RegressTag
     @TapeTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопок навигации")
@@ -49,15 +43,14 @@ public class CheckTapeTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckButtonMomentsVisibleOnPage() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        tapePage.get().checkButtonVisibleOnTapePage(BUTTON_MY_TAPE);
+        LoginPage loginPage = new LoginPage().get();
+        TapePage tapePage = new TapePage();
+        loginPage.auth();
+        tapePage.get().checkButtonVisibleOnTapePage(TITLE_BUTTON_MOMENTS);
     }
 
-    @Disabled
     @Test
+    @RegressTag
     @TapeTag
     @Feature("Состояние элементов")
     @Story("Проверка активного состояния")
@@ -66,15 +59,14 @@ public class CheckTapeTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckActiveButtonOnTape() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        tapePage.get().checkButtonIsSelectOnTapePage(BUTTON_MY_TAPE);
+        LoginPage loginPage = new LoginPage().get();
+        TapePage tapePage = new TapePage();
+        loginPage.auth();
+        tapePage.get().checkButtonIsSelectOnTapePage(TITLE_BUTTON_HOBBIES);
     }
 
-    @Disabled
     @Test
+    @RegressTag
     @TapeTag
     @Feature("Состояние элементов")
     @Story("Проверка неактивного состояния")
@@ -83,15 +75,14 @@ public class CheckTapeTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckNotActiveButtonOnTape() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        tapePage.get().checkButtonIsNotSelectOnTapePage(BUTTON_MY_TAPE);
+        LoginPage loginPage = new LoginPage().get();
+        TapePage tapePage = new TapePage();
+        loginPage.auth();
+        tapePage.get().checkButtonIsNotSelectOnTapePage(TITLE_BUTTON_MOMENTS);
     }
 
-    @Disabled
     @Test
+    @RegressTag
     @TapeTag
     @Feature("Взаимодействие с элементами")
     @Story("Переключение между кнопками")
@@ -100,12 +91,11 @@ public class CheckTapeTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.MINOR)
     public void testCheckActiveButtonMomentsAndButtonHobbiesNotActiveOnTape() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
+        LoginPage loginPage = new LoginPage().get();
+        TapePage tapePage = new TapePage();
+        loginPage.auth();
         tapePage.get().checkActiveButtonAfterClickOnTapePage(
-                BUTTON_MY_TAPE, BUTTON_MY_TAPE
+                TITLE_BUTTON_HOBBIES, TITLE_BUTTON_MOMENTS
         );
     }
 }
