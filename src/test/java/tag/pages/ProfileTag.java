@@ -1,4 +1,4 @@
-package tag;
+package tag.pages;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Test
-@Tag("navigation")
+@Tag("profile")
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NavigationTag {
+public @interface ProfileTag {
 }
