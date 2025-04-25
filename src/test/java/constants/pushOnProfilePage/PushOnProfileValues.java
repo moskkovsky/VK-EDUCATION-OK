@@ -10,4 +10,5 @@ public class PushOnProfileValues {
     static final public String VIDEO_IN_LIST_MENU = "Видео";
     static final public String BROADCAST = "Трансляция";
     static final public String IDEA_OF_THE_DAY = "Идея дня";
+    static final public String SHARE = "Поделиться";
 }
