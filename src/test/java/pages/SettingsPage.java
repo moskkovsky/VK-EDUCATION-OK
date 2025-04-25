@@ -11,41 +11,51 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static config.ConfigProvider.URL_SETTINGS;
-import static constants.settings.SettingsValues.TITLE;
-import static com.codeborne.selenide.Condition.exactText;
+import static constants.settings.SettingsValues.SETTINGS_TITLE;
+import static constants.valueInMethods.ValueMethods.CALL_METHOD_IS_LOADED;
+import static constants.valueInMethods.ValueMethods.CALL_METHOD_LOAD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Страница Настройки
  */
 public class SettingsPage extends LoadableComponent<SettingsPage> {
     private static final Logger log = LogManager.getLogger(SettingsPage.class);
-    private final By titleOnSettingsPage = By.xpath("//h3[text()='Настройки']");
+    private static final By TITLE_SETTINGS = By.xpath("//h3[text()='Настройки']");
 
     @Override
     protected void load() {
+        log.info(CALL_METHOD_LOAD);
         Selenide.open(URL_SETTINGS);
     }
 
     @Override
     protected void isLoaded() throws Error {
-        log.info("Вызов метода isLoaded()");
+        log.info(CALL_METHOD_IS_LOADED);
         try {
-            $(titleOnSettingsPage).shouldBe(visible.because("Не удалось найти заголовок страницы Настройки"));
+            checkVisibleOpenSettingsPage();
         } catch (Exception e) {
             throw new Error("Страница Настройки не загружена: " + e.getMessage());
         }
     }
 
-    /**
-     * Больше не нужно, после паттерна LoadedComponent
-     */
     @Step("Проверяем, что открылась страница Настроек")
-    @DisplayName("Проверка открытии страницы")
-    public SettingsPage checkVisibleOpenSettings() {
+    @DisplayName("Проверка открытии страницы: Settings")
+    public SettingsPage checkVisibleOpenSettingsPage() {
         log.info("Проверка, что открылась страница Настройки");
-        $(titleOnSettingsPage).shouldBe(visible.because(
+        $(TITLE_SETTINGS).shouldBe(visible.because(
                 "Не удалось найти заголовок на странице Настроек"
-        )).shouldHave(exactText(TITLE));
+        ));
+        String actualTitleSettings = $(TITLE_SETTINGS).getText().trim();
+        assertEquals(
+                SETTINGS_TITLE,
+                actualTitleSettings,
+                String.format(
+                        "Заголовок страницы Настроек не совпадает.\nОжидалось: '%s'\nФактически: '%s'",
+                        SETTINGS_TITLE,
+                        actualTitleSettings
+                )
+        );
         return this;
     }
 }
