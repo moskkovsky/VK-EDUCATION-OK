@@ -1,44 +1,42 @@
-package tests;
+package tests.ui;
 
 import config.ConfigProvider;
-import config.EnvConfig;
 import core.BaseTest;
 import io.qameta.allure.*;
+import org.checkerframework.checker.units.qual.N;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
+import pages.NavigationPage;
 import pages.ProfilePage;
-import tag.ProfileTag;
+import tag.pages.ProfileTag;
+import tag.regress.RegressTag;
 
-import java.util.function.Supplier;
 
 @Epic(value = "Профиль")
 @Link("https://t.me/moskkovsky")
 @DisplayName("Тесты для Профиля пользователя")
 public class CheckProfileTest extends BaseTest {
-    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
-    private Supplier<ProfilePage> profilePage = () -> new ProfilePage().get();
-
     @Test
+    @RegressTag
     @ProfileTag
     @Feature(value = "Отображение элементов")
     @Story("Видимость имени на странице")
     @DisplayName("Имя пользователя на странице Профиль")
     @Description("Тест проверяет, что отображается имя пользователя при открытии страницы Профиль")
     @Owner("Anton Moskovsky")
-    @Link("https://t.me/moskkovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.get().auth(
-                        EnvConfig.USER_LOGIN,
-                        EnvConfig.USER_PASSWORD
-                )
-                .getNavigation()
-                .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
-        profilePage.get();
+        LoginPage loginPage = new LoginPage().get();
+        ProfilePage profilePage = new ProfilePage();
+        NavigationPage navigationPage = new NavigationPage();
+        loginPage.auth();
+        navigationPage.get().clickElementInMenuNavigation(ConfigProvider.USER_NAME);
+        profilePage.get().checkNameInProfile(ConfigProvider.USER_NAME);
     }
 
     @Test
+    @RegressTag
     @ProfileTag
     @Feature(value = "Отображение элементов")
     @Story("Видимость подсказок в блоке О себе")
@@ -47,12 +45,11 @@ public class CheckProfileTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInFieldTellAboutMeOnProfile() {
-        loginPage.get().auth(
-                        EnvConfig.USER_LOGIN,
-                        EnvConfig.USER_PASSWORD
-                )
-                .getNavigation()
-                .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
+        LoginPage loginPage = new LoginPage().get();
+        ProfilePage profilePage = new ProfilePage();
+        NavigationPage navigationPage = new NavigationPage();
+        loginPage.auth();
+        navigationPage.get().clickElementInMenuNavigation(ConfigProvider.USER_NAME);
         profilePage.get().checkHintInFieldTellAboutMeInProfile();
     }
 }

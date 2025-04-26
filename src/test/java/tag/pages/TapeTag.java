@@ -1,4 +1,4 @@
-package tag;
+package tag.pages;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

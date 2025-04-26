@@ -1,26 +1,24 @@
-package tests;
+package tests.ui;
 
 import config.ConfigProvider;
-import config.EnvConfig;
 import core.BaseTest;
 import io.qameta.allure.*;
+import org.checkerframework.checker.units.qual.N;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
+import pages.NavigationPage;
 import pages.ProfilePage;
-import tag.SettingsTag;
-
-import java.util.function.Supplier;
+import pages.SettingsPage;
+import tag.regress.RegressTag;
+import tag.pages.SettingsTag;
 
 @Epic(value = "Настройки")
 @DisplayName("Тесты для Настройки пользователя")
 @Link("https://t.me/moskkovsky")
 public class CheckSettingsTest extends BaseTest {
-
-    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
-    private Supplier<ProfilePage> profilePage = () -> new ProfilePage().get();
-
     @Test
+    @RegressTag
     @SettingsTag
     @Feature(value = "Отображение элементов")
     @Story("Открытие страницы настроек")
@@ -29,13 +27,13 @@ public class CheckSettingsTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleNameOnProfile() {
-        loginPage.get().auth(
-                        EnvConfig.USER_LOGIN,
-                        EnvConfig.USER_PASSWORD
-                )
-                .getNavigation()
-                .clickElementInMenuNavigation(ConfigProvider.USER_NAME);
-        profilePage.get().clickToButtonSettingsOnProfile()
-                .checkVisibleOpenSettings();
+        LoginPage loginPage = new LoginPage().get();
+        ProfilePage profilePage = new ProfilePage();
+        SettingsPage settingsPage = new SettingsPage();
+        NavigationPage navigationPage = new NavigationPage();
+        loginPage.auth();
+        navigationPage.get().clickElementInMenuNavigation(ConfigProvider.USER_NAME);
+        profilePage.get().clickToButtonSettingsOnProfile();
+        settingsPage.get();
     }
 }

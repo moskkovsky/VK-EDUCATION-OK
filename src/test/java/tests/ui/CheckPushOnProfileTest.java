@@ -1,15 +1,15 @@
-package tests;
+package tests.ui;
 
-import config.EnvConfig;
 import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.LoginPage;
 import pages.PushOnProfilePage;
-import tag.PushOnProfileTag;
-
-import java.util.function.Supplier;
+import tag.pages.PushOnProfileTag;
+import tag.regress.RegressTag;
 
 import static constants.pushOnProfilePage.PushOnProfileValues.NOTE_IN_LIST_MENU;
 import static constants.pushOnProfilePage.PushOnProfileValues.TEXT_FOR_INPUT_IN_FIELD;
@@ -18,10 +18,8 @@ import static constants.pushOnProfilePage.PushOnProfileValues.TEXT_FOR_INPUT_IN_
 @DisplayName("Тесты для Публикации пользователя")
 @Link("https://t.me/moskkovsky")
 public class CheckPushOnProfileTest extends BaseTest {
-    private Supplier<LoginPage> loginPage = () -> new LoginPage().get();
-    private Supplier<PushOnProfilePage> pushOnProfilePage = () -> new PushOnProfilePage().get();
-
     @Test
+    @RegressTag
     @PushOnProfileTag
     @Feature("Отображение элементов")
     @Story("Видимость кнопки Опубликовать")
@@ -30,14 +28,14 @@ public class CheckPushOnProfileTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckVisibleButtonPushOnProfile() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
+        LoginPage loginPage = new LoginPage().get();
+        PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+        loginPage.auth();
         pushOnProfilePage.get();
     }
 
     @Test
+    @RegressTag
     @PushOnProfileTag
     @Feature("Кликабельность элементов")
     @Story("Кликабельность кнопки Опубликовать")
@@ -46,14 +44,16 @@ public class CheckPushOnProfileTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckClickButtonPushOnProfile() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        pushOnProfilePage.get().clickButtonPush();
+        LoginPage loginPage = new LoginPage().get();
+        PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+        loginPage.auth();
+        pushOnProfilePage.get()
+                .clickButtonPush()
+                .checkVisibleOpenPushOnProfilePage();
     }
 
     @Test
+    @RegressTag
     @PushOnProfileTag
     @Feature("Отображение элементов")
     @Story("Видимость подсказок в поле ввода Записи")
@@ -62,16 +62,17 @@ public class CheckPushOnProfileTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.TRIVIAL)
     public void testCheckVisibleHintInInputTextInFieldForPushOnProfile() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        pushOnProfilePage.get().clickButtonPush()
+        LoginPage loginPage = new LoginPage().get();
+        PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+        loginPage.auth();
+        pushOnProfilePage.get()
+                .clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .checkVisibleHintInInputField();
     }
 
     @Test
+    @RegressTag
     @PushOnProfileTag
     @Feature("Не кликабельна кнопка")
     @Story("Не кликабельность кнопки без вставки текста в поле ввода")
@@ -80,31 +81,29 @@ public class CheckPushOnProfileTest extends BaseTest {
     @Owner("Anton Moskovsky")
     @Severity(value = SeverityLevel.NORMAL)
     public void testCheckNotActivePushEmptyText() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        pushOnProfilePage.get().clickButtonPush()
+        LoginPage loginPage = new LoginPage().get();
+        PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+        loginPage.auth();
+        pushOnProfilePage.get()
+                .clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
-                .checkButtonPushOnProfileDisabled();
+                .checkButtonShareDisabled();
     }
 
-    @Test
-    @PushOnProfileTag
-    @Feature("Публикация записи")
-    @Story("Публикация записи на странице пользователя")
-    @DisplayName("Публикация записи на странице")
-    @Description("Тест проверяет, что запись опубликована на странице")
-    @Owner("Anton Moskovsky")
-    @Severity(value = SeverityLevel.NORMAL)
-    public void testCreateNoteOnProfile() {
-        loginPage.get().auth(
-                EnvConfig.USER_LOGIN,
-                EnvConfig.USER_PASSWORD
-        );
-        pushOnProfilePage.get().clickButtonPush()
+    @ParameterizedTest(name = "Публикация записи с текстом: {0}")
+    @ValueSource(strings = {
+            "VK EDUCATION 2025",
+            "AQA VK",
+            "VK",
+    })
+    public void testShareNoteOnProfile() {
+        LoginPage loginPage = new LoginPage().get();
+        PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
+        loginPage.auth();
+        pushOnProfilePage.get()
+                .clickButtonPush()
                 .clickChoiceButtonInListMenu(NOTE_IN_LIST_MENU)
                 .inputTextInField(TEXT_FOR_INPUT_IN_FIELD)
-                .clickButtonPushOnProfile();
+                .clickButtonShare();
     }
 }
