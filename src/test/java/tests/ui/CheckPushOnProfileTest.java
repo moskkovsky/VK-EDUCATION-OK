@@ -4,6 +4,8 @@ import core.BaseTest;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.LoginPage;
 import pages.PushOnProfilePage;
 import tag.pages.PushOnProfileTag;
@@ -88,16 +90,13 @@ public class CheckPushOnProfileTest extends BaseTest {
                 .checkButtonShareDisabled();
     }
 
-    @Test
-    @RegressTag
-    @PushOnProfileTag
-    @Feature("Публикация записи")
-    @Story("Публикация записи на странице пользователя")
-    @DisplayName("Публикация записи на странице")
-    @Description("Тест проверяет, что запись опубликована на странице")
-    @Owner("Anton Moskovsky")
-    @Severity(value = SeverityLevel.NORMAL)
-    public void testCreateNoteOnProfile() {
+    @ParameterizedTest(name = "Публикация записи с текстом: {0}")
+    @ValueSource(strings = {
+            "VK EDUCATION 2025",
+            "AQA VK",
+            "VK",
+    })
+    public void testShareNoteOnProfile() {
         LoginPage loginPage = new LoginPage().get();
         PushOnProfilePage pushOnProfilePage = new PushOnProfilePage();
         loginPage.auth();
