@@ -22,7 +22,7 @@ public class PushOnProfilePage extends LoadableComponent<PushOnProfilePage> {
     private static final Logger log = LogManager.getLogger(PushOnProfilePage.class);
     private static final By BUTTON_PUBLISH = By.xpath("//button[@data-tsid='ddm-button']"); // Кнопка Опубликовать на
     private static final By MENU_IN_PUBLISH = By.xpath("//div[@role='menu']");
-    private static final By TITLE_PUBLISH = By.xpath("//span[@role='menuitem'][.//h3[text()='Опубликовать']]");
+    private static final By TITLE_PUBLISH = By.xpath("//span[@role='menuitem']//h3[text()='Опубликовать']");
     private static final By BUTTON_SHARE = By.xpath("//button[@data-l='t,button.submit']");
     private static final By FIELD_INPUT = By.xpath("//div[@data-module='postingForm/mediaText']");
     private static final By HINT_TEXT_IN_FIELD_INPUT = By.xpath("//div[@class='input_placeholder']");
@@ -38,11 +38,7 @@ public class PushOnProfilePage extends LoadableComponent<PushOnProfilePage> {
     @Override
     protected void isLoaded() throws Error {
         log.info(CALL_METHOD_IS_LOADED);
-        try {
-            checkVisibleButtonPush();
-        } catch (Exception e) {
-            throw new Error("Страница Опубликовать не загружена: " + e.getMessage());
-        }
+        checkVisibleButtonPush();
     }
 
     @Step("Проверяем отображение кнопки Опубликовать")

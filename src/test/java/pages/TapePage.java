@@ -10,11 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static config.ConfigProvider.URL_FEED;
 import static constants.attribute.AttributeValues.ARIA_SELECTED;
-import static constants.tape.TapeValues.*;
 import static constants.valueInMethods.ValueMethods.*;
 
 /**
@@ -35,11 +33,7 @@ public class TapePage extends LoadableComponent<TapePage> {
     @Override
     protected void isLoaded() throws Error {
         log.info(CALL_METHOD_IS_LOADED);
-        try {
-            checkVisibleOpenTapePage();
-        } catch (Exception exception) {
-            throw new Error("Страница Лента не загружена: " + exception.getMessage());
-        }
+        checkVisibleOpenTapePage();
     }
 
     @Step("Проверяем, что открылась страница Лента")

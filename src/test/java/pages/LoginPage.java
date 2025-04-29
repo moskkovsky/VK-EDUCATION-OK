@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static config.ConfigProvider.URL_LOGIN;
-import static config.ConfigProvider.URL_SETTINGS;
 import static constants.valueInMethods.ValueMethods.CALL_METHOD_IS_LOADED;
 import static constants.valueInMethods.ValueMethods.CALL_METHOD_LOAD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,11 +37,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
     @Override
     protected void isLoaded() throws Error {
         log.info(CALL_METHOD_IS_LOADED);
-        try {
-            checkVisibleOpenLogin();
-        } catch (Exception e) {
-            throw new Error("Страница Авторизации не загружена: " + e.getMessage());
-        }
+        checkVisibleOpenLogin();
     }
 
     @Step("Проверяем, что открылась страница Авторизации")
@@ -66,7 +61,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
     }
 
     @Step("Проверяем ошибку '{errorMessageValue}'")
-    public LoginPage checkErrorMessage(String errorMessageValue) {
+    public void checkErrorMessage(String errorMessageValue) {
         log.info("Проверяем ошибку на странице Авторизации: {}", errorMessageValue);
         By errorMessageLocator = By.xpath(String.format(ERROR_MESSAGE_TEMPLATE, errorMessageValue));
         String actualErrorMessage = $(errorMessageLocator).getText().trim();
@@ -80,7 +75,6 @@ public class LoginPage extends LoadableComponent<LoginPage> {
                         actualErrorMessage
                 )
         );
-        return this;
     }
 
     @Step("Вводим логин пользователя")

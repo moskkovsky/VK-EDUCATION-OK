@@ -32,11 +32,8 @@ public class SettingsPage extends LoadableComponent<SettingsPage> {
     @Override
     protected void isLoaded() throws Error {
         log.info(CALL_METHOD_IS_LOADED);
-        try {
-            checkVisibleOpenSettingsPage();
-        } catch (Exception e) {
-            throw new Error("Страница Настройки не загружена: " + e.getMessage());
-        }
+        checkVisibleOpenSettingsPage();
+
     }
 
     @Step("Проверяем, что открылась страница Настроек")

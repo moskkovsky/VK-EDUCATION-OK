@@ -36,11 +36,7 @@ public class ProfilePage extends LoadableComponent<ProfilePage> {
     @Override
     protected void isLoaded() throws Error {
         log.info(CALL_METHOD_IS_LOADED);
-        try {
             checkNameInProfile(ConfigProvider.USER_NAME);
-        } catch (Exception e) {
-            throw new Error("Страница Профиля не загружена: " + e.getMessage());
-        }
     }
 
 
